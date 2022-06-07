@@ -1,32 +1,22 @@
-const h1 = document.querySelector("div.hello:first-child h1");
+const loginInput = document.querySelector("#login-form input");
+const loginButton = document.querySelector("#login-form button");
 
-function handleTitleClick(){
-    h1.style.color = "blue";
+function onLoginBtnClick(){
+
+    const username = loginInput.value;
+    console.log(username);
+    /*
+    if(username === ""){
+        alert("Please write your name!");
+    }
+    else if(username.length > 15){
+        alert("username is too long!");
+    }
+    else{
+        console.log(loginInput.value);
+    }
+    */
+    
 }
 
-function handleMouseEnter(){
-    h1.innerText = "Mouse is Here!";
-}
-
-function handleMouseLeave(){
-    h1.innerText = "Mouse is Gone!";
-}
-
-
-function handleWindowResize(){
-    document.body.style.backgroundColor = "tomato";
-}
-
-function handleWindowCopy(){
-    alert("copier!");
-}
-
-//h1.onclick = handleTitleClick;
-h1.addEventListener("click", handleTitleClick);
-//h1.onmouseenter = handleMouseEnter;
-h1.addEventListener("mouseenter", handleMouseEnter);
-h1.addEventListener("mouseleave", handleMouseLeave);
-
-
-window.addEventListener("resize", handleWindowResize);
-window.addEventListener("copy", handleWindowCopy);
+loginButton.addEventListener("click",onLoginBtnClick);
