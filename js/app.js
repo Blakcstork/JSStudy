@@ -1,6 +1,7 @@
 const loginForm = document.querySelector("#login-form")
 const loginInput = document.querySelector("#login-form input");
 const loginButton = document.querySelector("#login-form button");
+const logoutButton = document.querySelector("#logout-button");
 const greeting = document.querySelector("#greeting");
 
 const HIDDEN_CLASSNAME = "hidden";
@@ -27,12 +28,24 @@ function onLoginSubmit(event){
 
 }
 
+function LogoutSubmit(event){
+    event.preventDefault();
+    loginForm.classList.remove(HIDDEN_CLASSNAME);
+    const username = localStorage.getItem(USERNAME_KEY);
+
+    localStorage.removeItem(USERNAME_KEY, username);
+    greeting.classList.add(HIDDEN_CLASSNAME);
+
+}
+
 function handleLinkClick(event){
     event.preventDefault();
     console.dir(event)
 }
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+logoutButton.addEventListener("click", LogoutSubmit);
 
 if(savedUsername === null){
     loginForm.classList.remove(HIDDEN_CLASSNAME)//show the form
