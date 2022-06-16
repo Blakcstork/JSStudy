@@ -2,7 +2,7 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
-const toDos = [];
+let toDos = [];
 const TODOS_KEYS = "todos";
 
 function saveToDos(){
@@ -15,16 +15,14 @@ function deleteToDo(event){
     console.log(event.target.parentElement);
     const li = event.target.parentElement;
     li.remove();
-    const hateChinese = 100;
-
-
 }
 
 
 function paintToDo(newToDo){
     const li = document.createElement("li");
+    li.id = newTodo.id;
     const span = document.createElement("span");
-    span.innerText = newToDo;
+    span.innerText = newToDo.text;
     const button = document.createElement("button");
     button.innerText = "X";
     button.addEventListener("click", deleteToDo);
@@ -39,8 +37,12 @@ function handleToDoSubmit(event){
     event.preventDefault();
     const newToDo = toDoInput.value;
     toDoInput.value = "";
-    toDos.push(newToDo);
-    paintToDo(newToDo);
+    const newToDoObj = {
+        text:newToDo,
+        id:Date.now(),
+    }
+    toDos.push(newToDoObj);
+    paintToDo(newToDoObj);
     saveToDos();
 }
 
@@ -56,5 +58,6 @@ const savedToDos = localStorage.getItem(TODOS_KEYS);
 console.log(savedToDos);
 if(savedToDos){
     const parsedToDos = JSON.parse(savedToDos);
-    parsedToDos.forEach(sayHello);
+    toDos = parsedToDos;
+    parsedToDos.forEach((paintToDo));
 }
