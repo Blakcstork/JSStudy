@@ -12,15 +12,17 @@ function saveToDos(){
 
 
 function deleteToDo(event){
-    console.log(event.target.parentElement);
     const li = event.target.parentElement;
+    console.log(event.target.parentElement);
     li.remove();
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveToDos();
 }
 
 
 function paintToDo(newToDo){
     const li = document.createElement("li");
-    li.id = newTodo.id;
+    li.id = newToDo.id;
     const span = document.createElement("span");
     span.innerText = newToDo.text;
     const button = document.createElement("button");
@@ -61,3 +63,4 @@ if(savedToDos){
     toDos = parsedToDos;
     parsedToDos.forEach((paintToDo));
 }
+
